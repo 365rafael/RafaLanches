@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RafaLanches.Context;
+using RafaLanches.Repositories;
+using RafaLanches.Repositories.Interfaces;
 
 namespace RafaLanches
 {
@@ -17,6 +19,10 @@ namespace RafaLanches
 		{
 			services.AddDbContext<AppDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddTransient<ILancheRepository, LancheRepository>();
+			services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+
 			services.AddControllersWithViews();
 		}
 
