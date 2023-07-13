@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RafaLanches.Repositories;
+using RafaLanches.Repositories.Interfaces;
 
 namespace RafaLanches.Controllers
 {
 	public class LancheController : Controller
 	{
-		private readonly LancheRepository _lacheRepository;
+		private readonly ILancheRepository _lacheRepository;
 
-		public LancheController(LancheRepository lacheRepository)
+		public LancheController(ILancheRepository lacheRepository)
 		{
 			_lacheRepository = lacheRepository;
 		}
