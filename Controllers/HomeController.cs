@@ -9,6 +9,7 @@ namespace RafaLanches.Controllers
         
         public IActionResult Index()
         {
+            
             return View();
         }
         
