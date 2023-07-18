@@ -1,16 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RafaLanches.Models;
+using RafaLanches.Repositories.Interfaces;
+using RafaLanches.ViewModels;
 using System.Diagnostics;
 
 namespace RafaLanches.Controllers
 {
     public class HomeController : Controller
     {
-        
+        private readonly ILancheRepository _repository;
+
+        public HomeController(ILancheRepository repository)
+        {
+            _repository = repository;
+        }
+
         public IActionResult Index()
         {
-            
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                LanchesPreferidos = _repository.LanchesPreferidos
+            };
+            return View(homeViewModel);
         }
         
         public IActionResult Demo()
