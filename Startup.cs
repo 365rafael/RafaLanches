@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RafaLanches.Context;
+using RafaLanches.Models;
 using RafaLanches.Repositories;
 using RafaLanches.Repositories.Interfaces;
 
@@ -22,6 +23,7 @@ namespace RafaLanches
 
 			services.AddTransient<ILancheRepository, LancheRepository>();
 			services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+			services.AddScoped (sp => CarrinhoCompra.GetCarrinho(sp));
 
 			//config cache
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
