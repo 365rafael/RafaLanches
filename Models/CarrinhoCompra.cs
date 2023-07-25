@@ -40,10 +40,10 @@ namespace RafaLanches.Models
         public void AdicionarAoCarrinho(Lanche lanche)
         {
             var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault(
-                s=> s.Lanche.LancheId == lanche.LancheId &&
-                s.CarrinhoCompraId == CarrinhoCompraId);
+                     s => s.Lanche.LancheId == lanche.LancheId &&
+                     s.CarrinhoCompraId == CarrinhoCompraId);
 
-            if(carrinhoCompraItem == null)
+            if (carrinhoCompraItem == null)
             {
                 carrinhoCompraItem = new CarrinhoCompraItem
                 {
@@ -51,6 +51,7 @@ namespace RafaLanches.Models
                     Lanche = lanche,
                     Quantidade = 1
                 };
+                _context.CarrinhoCompraItens.Add(carrinhoCompraItem);
             }
             else
             {

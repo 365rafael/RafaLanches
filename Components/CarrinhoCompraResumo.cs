@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using RafaLanches.Models;
 using RafaLanches.ViewModels;
 
-namespace RafaLanches.Components
+namespace LanchesMac.Components
 {
     public class CarrinhoCompraResumo : ViewComponent
     {
         private readonly CarrinhoCompra _carrinhoCompra;
+
         public CarrinhoCompraResumo(CarrinhoCompra carrinhoCompra)
         {
             _carrinhoCompra = carrinhoCompra;
@@ -14,14 +16,22 @@ namespace RafaLanches.Components
 
         public IViewComponentResult Invoke()
         {
-             var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+            var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+
+            //var itens = new List<CarrinhoCompraItem>()
+            //{
+            //    new CarrinhoCompraItem(),
+            //    new CarrinhoCompraItem()
+            //};
+
             _carrinhoCompra.CarrinhoCompraItens = itens;
 
-            var carrinhoCompraVM = new CarrinhoCompraViewModel 
+            var carrinhoCompraVM = new CarrinhoCompraViewModel
             {
                 CarrinhoCompra = _carrinhoCompra,
-                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal(),
+                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal()
             };
+
             return View(carrinhoCompraVM);
         }
     }
